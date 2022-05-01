@@ -1,62 +1,37 @@
-import React from 'react';
-import { 
-  View, 
-  Text, 
-  Image,
-  Alert,
-  ActivityIndicator
+import React, { useState } from 'react';
+import {
+    Text,
+    TextInput,
+    View,
+    Image,
+    StatusBar,
 } from 'react-native';
-
-import { useAuth } from '../../hooks/auth';
-
-import IllustrationImg from '../../assets/illustration.png';
-import { theme } from '../../global/styles/theme';
-import { styles } from './styles';
-
 import { ButtonIcon } from '../../components/ButtonIcon';
-import { Background } from '../../components/Background';
+import { styles } from './styles';
+import IllustrationImg from '../../assets/illustration.png';
 
-export function SignIn(){
-  const { loading, signIn } = useAuth();
+export function SignIn() {
+    const [text, setText] = useState('Matheus');
 
-  async function handleSignIn() {
-    try {
-      await signIn();
-    }catch (error) {
-      Alert.alert(error);
-    }
-  }
-
-  return(
-    <Background>
-      <View style={styles.container}>     
-        <Image 
-          source={IllustrationImg} 
-          style={styles.image} 
-          resizeMode="stretch"
-        />
-
-        <View style={styles.content}>
-          <Text style={styles.title}>
-            Conecte-se {'\n'}
-            e organize suas {'\n'} 
-            jogatinas
-          </Text>
-
-          <Text style={styles.subtitle}>
-            Crie grupos para jogar seus games {'\n'} 
-            favoritos com seus amigos
-          </Text>
-
-          {
-            loading ? <ActivityIndicator color={theme.colors.primary} /> :
-            <ButtonIcon 
-              title="Entrar com Discord"
-              onPress={handleSignIn}
-            />  
-          }                             
+    return (
+        <View style={styles.container}>
+            <Image
+                source={IllustrationImg}
+                style={styles.image}
+                resizeMode='stretch'
+            />
+            <View style={styles.content}>
+                <Text style={styles.title}>
+                    Organize {'\n'}
+                    suas jogatinas {'\n'}
+                    facilmente
+                </Text>
+                <Text style={styles.subtitle}>
+                    Crie grupos para jogar seus games {'\n'}
+                    favoritos com seus amigos
+                </Text>
+                <ButtonIcon title='Entrar com Discord' activeOpacity={0.7} />
+            </View>
         </View>
-      </View>
-    </Background>
-  );
+    )
 }
