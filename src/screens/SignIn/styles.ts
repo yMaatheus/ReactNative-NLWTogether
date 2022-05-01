@@ -28,8 +28,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 15,
         marginBottom: 64,
-        fontFamily: theme.fonts.title500,
         lineHeight: 25,
     }
-
-})
